@@ -1,0 +1,48 @@
+.letterPane {
+    display: grid;
+    margin: 0.8rem 0 2rem;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 0.1rem;
+}
+
+.rel{
+    position: relative;
+}
+
+.dataPane {
+    display: flex;
+    flex-direction: column;
+    /* justify-content: flex-start; */
+    align-items: flex-start;
+    gap: 0.1rem;
+    padding: 1rem;
+    border-radius: 0.5rem;
+    box-shadow: 0 0 1.3rem #000000;
+}
+
+
+button{
+    border: none;
+    border-radius: 0.5rem;
+    font-size: 1.3rem;
+    font-weight: bold;
+    color: #012401;
+    cursor: pointer;
+    box-shadow: 0 0 1.3rem #000000;
+    transition: transform 0.1s ease-in-out;
+    z-index: 2;
+}
+
+button:hover {
+    transform: scale(0.96);
+    z-index: 1;
+}
+
+button:disabled {
+    background-color: #929292;
+    color: #6c6c6c;
+}
+
+.green {
+    background-color: rgb(55, 216, 194);
+}

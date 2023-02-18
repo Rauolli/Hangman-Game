@@ -1,0 +1,8 @@
+.hangman{
+    width: 20vw;
+    background-color: #fff;
+    border: 1px solid #000;
+    border-radius: 5px;
+    padding: 10px;
+    /* margin: 10px; */
+}

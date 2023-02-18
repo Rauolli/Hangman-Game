@@ -1,0 +1,21 @@
+<svg viewBox="0 0 500 500">
+    <!-- Galgen -->
+    <line x1="50" y1="450" x2="150" y2="450" stroke="black" stroke-width="5" />
+    <line x1="100" y1="450" x2="100" y2="100" stroke="black" stroke-width="5" />
+    <line x1="100" y1="100" x2="300" y2="100" stroke="black" stroke-width="5" />
+    <line x1="300" y1="100" x2="300" y2="150" stroke="black" stroke-width="5" />
+
+    <!-- Kopf -->
+    <circle cx="300" cy="200" r="50" stroke="black" stroke-width="5" fill="transparent" />
+
+    <!-- Körper -->
+    <line x1="300" y1="250" x2="300" y2="350" stroke="black" stroke-width="5" />
+
+    <!-- Arme -->
+    <line x1="250" y1="275" x2="300" y2="250" stroke="black" stroke-width="5" />
+    <line x1="350" y1="275" x2="300" y2="250" stroke="black" stroke-width="5" />
+
+    <!-- Beine -->
+    <line x1="275" y1="400" x2="300" y2="350" stroke="black" stroke-width="5" />
+    <line x1="325" y1="400" x2="300" y2="350" stroke="black" stroke-width="5" />
+</svg>

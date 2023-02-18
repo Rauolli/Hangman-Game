@@ -1,0 +1,24 @@
+header{
+    background-color: #2d2e31;
+    padding: 2rem;
+    border-radius: 0.6rem;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+    /* align-items: center; */
+    gap: 0.4rem;
+    box-shadow: 0.3rem 0.8rem 1.5rem #999;
+}
+
+header>h1{
+    color: rgb(19, 178, 157);
+    align-self: center;
+    font-size: 2.5rem;
+    font-weight: 300;
+}
+
+header>h2{
+    color: rgb(248, 168, 88);;
+    font-size: 1.1rem;
+    font-weight: 300;
+}

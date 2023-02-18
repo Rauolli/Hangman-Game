@@ -1,0 +1,5 @@
+.App {
+    display: flex;
+    flex-flow: column wrap;
+    gap: 0.5rem;
+}
