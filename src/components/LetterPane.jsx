@@ -25,8 +25,7 @@ export default function LetterPane( props){
         game.pruefeBuchstabe(geklickterBuchstabe);
         game.zeigeErratenesWort();
         alphabet[id].dis = true;
-        console.log("bereits Erratene Buchstaben",errateneBuchst);
-        console.log("Zu erratendes Wort:", erratenesWort);
+        
         setChangeState(!changeState);
     }
 
@@ -59,9 +58,9 @@ export default function LetterPane( props){
 
                 </section>
             </div>
-            {/* <div>
-            {gameOver && <GameOverPane game={game} resetGame={(game, wert) => {return wert}}/>}
-            </div>   */}
+            <div>
+            {gameOver && <GameOverPane game={game} state={setChangeState}/>}
+            </div>  
         </article>
     );
 }

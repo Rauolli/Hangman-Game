@@ -1,23 +1,32 @@
 import './GameOverPane.css';
+import { useState } from 'react';
 
 function GameOverPane(props) {
-    
     const fehlVersuche = props.game.FehlVersuche;
     const game = props.game;
-    const resetGame = props.resetGame;
+    const state = props.state;
+    const [chState, setState] = useState(state);
 
-    function handleClick() {
+    function handleXClick() {
         game.GameOver = false;
-
-        alert(game.GameOver);
+        setState(!state);
     }
+
+    function handleButtonClick() {
+        game.GameOver = false;
+        game.resetGame();
+        setState(!state);
+    }
+
     
     return (
         <div className="game-over-pane">
-            <button onClick={handleClick}>X</button>
+            <button onClick={handleXClick}>X</button>
             <h2>Game Over</h2>
-            <p>Du hast Fehlversuche: {fehlVersuche}</p>
-            <button onClick={()=> resetGame(game, false)}>Play again</button>
+            <p>{game.GameOverAusgabe}</p>
+            <p>Du hast {fehlVersuche} Fehlversuche.</p>
+            <p>{game.Wort} war das gesuchte Wort.</p>
+            <button onClick={handleButtonClick}>Play again</button>
         </div>
     );
 }
