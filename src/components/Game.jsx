@@ -54,9 +54,6 @@ export default class Game{
         return this.#gameOverAusgabe;
     }
 
-    set GameOver(go){
-        this.#gameOver = go;
-    }
 
     pruefeBuchstabe(buchstabe){
         this.#alleBenutztenBuchstaben.push(buchstabe);
@@ -99,7 +96,10 @@ export default class Game{
     }
 
     resetGame(){
-        this.#wort = [];
+        let zufallsWort = WortListe[Math.floor(Math.random() * WortListe.length)];
+        zufallsWort = zufallsWort.toUpperCase();
+        this.#wort = zufallsWort.split('');
+        this.addToSet(this.#wort);
         this.#anzahlVersuche = 6;
         this.#fehlVersuche = 0;
         this.#erratendeBuchstaben = [];
@@ -108,5 +108,5 @@ export default class Game{
         this.#gameOver = false;
         this.#gameOverAusgabe = '';
     }
-    
+
 }

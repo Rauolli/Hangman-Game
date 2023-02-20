@@ -1,11 +1,12 @@
 import './LetterPane.css';
 import BuchstabenListe from './BuchstabenListe';
-import { useEffect, useState } from "react";
+import { useState } from "react";
 import GameOverPane from './GameOverPane';
+import Game from './Game';
 
 
 export default function LetterPane( props){
-    const game = props.game;
+    let game = props.game;
     const anzVers = game.AnzahlVersuche;
     const wort = game.Wort;
     const errateneBuchst = game.ErratendeBuchstaben;
@@ -24,20 +25,16 @@ export default function LetterPane( props){
         const id = event.currentTarget.id - 1;
         game.pruefeBuchstabe(geklickterBuchstabe);
         game.zeigeErratenesWort();
-        alphabet[id].dis = true;
-        
+        alphabet[id].dis = true;       
         setChangeState(!changeState);
     }
 
-    // useEffect(() => {
-    //     console.log("Anzahl der Versuche: ", anzVers);
-    //     console.log("Das zu suchende Wort: ", wort);
-    //     console.log("bereits erratende Buchstaben: ", errateneBuchst);
-    //     console.log("eingesetzte Buchstaben: ", alleBuchstaben);
-    //     console.log("FehlVersuche: ", fehlVersuche);
-    //     console.log("bereits Erraten: ", erratenesWort);
-    //     console.log("Game Over? ", gameOver);
-    // }, [game, anzVers, wort, errateneBuchst, alleBuchstaben, fehlVersuche, erratenesWort, gameOver]);
+    const changeGameStatus = () => {
+        game.resetGame();
+        alphabet.forEach(buchstabe => buchstabe.dis = false);
+        setChangeState(!changeState);
+    }
+
 
     return(
         <article>
@@ -55,11 +52,10 @@ export default function LetterPane( props){
                     <h3>benutzte Buchstaben: {alleBuchstaben}</h3> 
                     <h3>Das zu suchende Wort: {erratenesWort}</h3>
                     <h3>Game Over: {gameOver}</h3>
-
                 </section>
             </div>
             <div>
-            {gameOver && <GameOverPane game={game} state={setChangeState}/>}
+            {gameOver && <GameOverPane game={game} state={changeGameStatus}/>}
             </div>  
         </article>
     );
