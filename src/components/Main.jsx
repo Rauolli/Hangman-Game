@@ -1,18 +1,23 @@
 import './Main.css';
-import Game from './Game';
 import LetterPane from './LetterPane';
 import HangmanPane from './HangmanPane';
-// import { useState } from 'react';
+import { useState } from 'react';
 import DisplayPane from './DisplayPane';
 
-export default function Main(){
-    const game = new Game();
-    const fehlVersuche = 6;
+export default function Main({game}){
+    
+    const [aktGame, setGame] = useState({...game})
+    
+    const setGameStatus = (aGame) => {
+        setGame({...aGame});
+    }
+    
+
     return (
         <main>
-            <DisplayPane game={ game }/>
-            <LetterPane  game={game} resetGame={(game, wert)=>{return wert}}/>
-            <HangmanPane fehlVersuche={ fehlVersuche} />             
+            <DisplayPane game={game} gameStatus={setGameStatus}/>
+            <LetterPane  game={game} gameStatus={setGameStatus}/>
+            <HangmanPane failedAttempts={game.FailedAttempts} />             
         </main>
     )
 }

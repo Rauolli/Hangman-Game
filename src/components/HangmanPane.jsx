@@ -16,9 +16,9 @@ export default function HangmanPane( props){
         <line x1="80" y1="65" x2="85" y2="90" stroke="#000" strokeWidth="2"/>
     ];
 
-    function zeigeHangMan(){
-        if(props.fehlVersuche > 0){
-            return svgElemente.slice(0, props.fehlVersuche);
+    function showHangMan(){
+        if(props.failedAttempts > 0){
+            return svgElemente.slice(0, props.failedAttempts);
         }
     }
 
@@ -26,7 +26,7 @@ export default function HangmanPane( props){
         <article className="hangman" >
             <svg viewBox="0 0 100 100">
                 {svgGalgen.map((svgElement, index) => <g key={index}>{svgElement}</g>)}
-                {zeigeHangMan()?.map((svgElement, index) => <g key={index}>{svgElement}</g>)}
+                {showHangMan()?.map((svgElement, index) => <g key={index}>{svgElement}</g>)}
             </svg>
         </article>  
     );   

@@ -2,7 +2,7 @@
     display: grid;
     margin: 0.8rem 0 2rem;
     grid-template-columns: repeat(4, 1fr);
-    gap: 0.1rem;
+    grid-gap: 0.4rem 0.8rem;
 }
 
 .rel{
@@ -23,14 +23,14 @@
 
 button{
     border: none;
-    border-radius: 0.5rem;
-    font-size: 1.3rem;
-    font-weight: bold;
+    min-height: 3rem;
+    border-radius: 0.3rem;
     color: #012401;
     cursor: pointer;
     box-shadow: 0 0 1.3rem #000000;
     transition: transform 0.1s ease-in-out;
     z-index: 2;
+    
 }
 
 button:hover {
@@ -44,5 +44,21 @@ button:disabled {
 }
 
 .green {
+    font-size: 1.5rem;
+    font-weight: 500;
     background-color: rgb(55, 216, 194);
+}
+
+.clear {
+    grid-column: 3 / span 2;
+    grid-row: 8 / 9;
+}
+
+.red {
+    font-weight: bold;
+    padding: 0.2rem 0.5rem;
+    letter-spacing: 0.05rem;
+    color: rgb(255, 200, 0);
+    background-color: rgb(150, 32, 32);
+    max-width: max-content;
 }

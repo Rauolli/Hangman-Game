@@ -1,112 +1,123 @@
-import WortListe from "./WortListe";
+import WordList from "./WordList";
 
 export default class Game{
-    #wort = [];
-    #anzahlVersuche = 6;
-    #fehlVersuche = 0;
-    #erratendeBuchstaben = [];
-    #BuchstabenImWort = new Set();
-    #alleBenutztenBuchstaben = [];
+    #word = [];
+    #numberAttempts = 6;
+    #failedAttempts = 0;
+    #guessedLetters = [];
+    #containedLetters = [];
+    #alreadyUsedLetters = [];
     #gameOver = false;
-    #gameOverAusgabe = '';
+    #gameOverOutput = '';
 
 
     constructor(){
-        let zufallsWort = WortListe[Math.floor(Math.random() * WortListe.length)];
-        zufallsWort = zufallsWort.toUpperCase();
-        this.#wort = zufallsWort.split('');
-        this.addToSet(this.#wort);
+        let randomWord = WordList[Math.floor(Math.random() * WordList.length)];
+        randomWord = randomWord.toUpperCase();
+        this.#word = randomWord.split('');
+        let contLett = new Set(this.#word);
+        this.#containedLetters = [...contLett];
     }
 
-    addToSet(aktuellesSet){
-        aktuellesSet.forEach(buchstabe => this.#BuchstabenImWort.add(buchstabe));
+
+    get Word(){
+        return this.#word.map(letter => letter);
     }
 
-    get Wort(){
-        return this.#wort.map(buchstabe => buchstabe);
+    get NumberOfAttempts(){
+        let axe = ''
+        let verbleibendeVersuche = this.#numberAttempts - this.#failedAttempts;    
+        for (let i = 0; i < verbleibendeVersuche; i++) {
+            axe += ' 🪓 ';
+        }
+        return axe;
     }
 
-    get AnzahlVersuche(){
-        return this.#anzahlVersuche;
+    get LightningFailedAttempts(){
+        let lightnig = ''
+        for (let i = 0; i < this.#failedAttempts; i++) {
+            lightnig += '⚡';
+        }
+        return lightnig;
     }
 
-    get FehlVersuche(){
-        return this.#fehlVersuche;
+    get FailedAttempts(){
+        return this.#failedAttempts;
     }
 
-    get ErratendeBuchstaben(){
-        return this.#erratendeBuchstaben.map(buchstabe => buchstabe);
+    get GuessedLetters(){
+        return this.#guessedLetters.map(letter => letter);
     }
 
-    get BuchstabenImWort(){
-        return this.#BuchstabenImWort;
+    get ContainedLetters(){
+        return this.#containedLetters;
     }
 
-    get AlleBenutztenBuchstaben(){
-        return this.#alleBenutztenBuchstaben.map(buchstabe => buchstabe);
+    get AlreadyUsedLetters(){
+        return this.#alreadyUsedLetters.map(letter => letter);
     }
 
     get GameOver(){
         return this.#gameOver;
     }
 
-    get GameOverAusgabe(){
-        return this.#gameOverAusgabe;
+    get GameOverOutput(){
+        return this.#gameOverOutput;
     }
 
 
-    pruefeBuchstabe(buchstabe){
-        this.#alleBenutztenBuchstaben.push(buchstabe);
+    checkLetter(letter){
+        this.#alreadyUsedLetters.push(letter);
         
-        if (this.#wort.includes(buchstabe)){
-            this.#erratendeBuchstaben.push(buchstabe);
+        if (this.#word.includes(letter)){
+            this.#guessedLetters.push(letter);
         } else {
-            this.#fehlVersuche++;
+            this.#failedAttempts++;
         }
 
-        this.pruefeSpielStatus();
+        this.checkGameStatus();
     }
 
-    pruefeSpielStatus(){
+    checkGameStatus(){
         
-        if (this.#fehlVersuche >= this.#anzahlVersuche){
+        if (this.#failedAttempts >= this.#numberAttempts){
             this.#gameOver = true;
-            this.#gameOverAusgabe = 'Du hast leider Verloren!';
-        } else if (this.#BuchstabenImWort.size === this.#erratendeBuchstaben.length){
+            this.#gameOverOutput = 'Du hast leider Verloren!';
+        } else if (this.#containedLetters.length === this.#guessedLetters.length){
             this.#gameOver = true;
-            this.#gameOverAusgabe = 'Bravo, Du hast gewonnen!';
+            this.#gameOverOutput = 'Bravo, Du hast gewonnen!';
         }       
     }
 
 
-    zeigeErratenesWort(){
-        let bereitsErratentenesWort = [];
-        this.#wort.forEach(buchstabe => {
-            if (this.#erratendeBuchstaben.includes(buchstabe)){
-                bereitsErratentenesWort.push(buchstabe) ;
+    showGuessedWord(){
+        let alredyGuessedPart = [];
+        this.#word.forEach(letter => {
+            if (this.#guessedLetters.includes(letter)){
+                alredyGuessedPart.push(letter) ;
             } else {
-                bereitsErratentenesWort.push('_');
+                alredyGuessedPart.push('_');
             }
         });
-        const laenge = bereitsErratentenesWort.length - 1;
+        const laenge = alredyGuessedPart.length - 1;
         for(let i = 0; i < laenge; i++){
-            bereitsErratentenesWort[i] = bereitsErratentenesWort[i] + ' ';
+            alredyGuessedPart[i] = alredyGuessedPart[i] + ' ';
         }
-        return bereitsErratentenesWort.map(buchstabe => buchstabe);
+        return alredyGuessedPart.map(letter => letter);
     }
 
     resetGame(){
-        let zufallsWort = WortListe[Math.floor(Math.random() * WortListe.length)];
-        zufallsWort = zufallsWort.toUpperCase();
-        this.#wort = zufallsWort.split('');
-        this.addToSet(this.#wort);
-        this.#anzahlVersuche = 6;
-        this.#fehlVersuche = 0;
-        this.#erratendeBuchstaben = [];
-        this.#BuchstabenImWort = new Set();
-        this.#alleBenutztenBuchstaben = [];
+        let randomWord = WordList[Math.floor(Math.random() * WordList.length)];
+        randomWord = randomWord.toUpperCase();
+        this.#word = randomWord.split('');
+        let biw = new Set(this.#word);
+        this.#containedLetters = [...biw];
+        this.#numberAttempts = 6;
+        this.#failedAttempts = 0;
+        this.#guessedLetters = [];
+        this.#alreadyUsedLetters = [];
         this.#gameOver = false;
-        this.#gameOverAusgabe = '';
+        this.#gameOverOutput = '';
     }
 
 }

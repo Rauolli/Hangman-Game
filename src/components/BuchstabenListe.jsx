@@ -129,19 +129,24 @@ const BuchstabenListe =
         id: 26,
         dis: false, 
         val:"Z"
-    },        
+    },
     {
         id: 27,
-        dis: false, 
-        val:"Ä"
+        dis: false,
+        val:"-"
     },        
     {
         id: 28,
         dis: false, 
-        val:"Ö"
+        val:"Ä"
     },        
     {
         id: 29,
+        dis: false, 
+        val:"Ö"
+    },        
+    {
+        id: 30,
         dis: false, 
         val:"Ü"
     }        
