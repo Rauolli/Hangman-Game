@@ -6,16 +6,16 @@ import DisplayPane from './DisplayPane';
 
 export default function Main({game}){
     
-    const [aktGame, setGame] = useState({...game})
+    const [gameStatus, setGame] = useState(false);
     
-    const setGameStatus = (aGame) => {
-        setGame({...aGame});
+    const setGameStatus = () => {
+        setGame(!gameStatus);
     }
     
 
     return (
         <main>
-            <DisplayPane game={game} gameStatus={setGameStatus}/>
+            <DisplayPane game={game} />
             <LetterPane  game={game} gameStatus={setGameStatus}/>
             <HangmanPane failedAttempts={game.FailedAttempts} />             
         </main>

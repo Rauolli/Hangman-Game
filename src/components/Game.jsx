@@ -61,6 +61,10 @@ export default class Game{
         return this.#gameOver;
     }
 
+    set GameOver(value){
+        this.#gameOver = value;
+    }
+
     get GameOverOutput(){
         return this.#gameOverOutput;
     }

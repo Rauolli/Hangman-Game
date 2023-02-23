@@ -7,7 +7,7 @@ function App() {
   const game = new Game();
   return (
     <div className="App">
-      {/* <Header /> */}
+      <Header />
       <Main game={ game }/>
     </div>
   )

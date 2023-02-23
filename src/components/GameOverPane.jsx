@@ -6,23 +6,21 @@ function GameOverPane(props) {
     const state = props.state;
     const [changeGOState, setChangeGOState] = useState(false);
 
-    function handleXClick() {
-        setChangeGOState(!changeGOState);
-        state();    
-    }
-
-    function handleButtonClick() {
-        setChangeGOState(!changeGOState);
-        state();
+    function handleButtonClick(event) {
+        const clickedButton = event.currentTarget.innerText;
+        game.GameOver = false;
+        setChangeGOState(!changeGOState);   
+        state(clickedButton);
     }
 
     return (
         <div className="game-over-pane">
-            <button onClick={handleXClick}>X</button>
+            <button onClick={handleButtonClick}>X</button>
             <h2>Game Over</h2>
-            <p>{game.GameOverOutput}</p>
+            <h3>{game.GameOverOutput}</h3>
             <p>Du hast {game.FailedAttempts} Fehlversuche.</p>
-            <p>{game.Word} war das gesuchte Wort.</p>
+            <h3>{game.Word}</h3>
+            <p>war das gesuchte Wort.</p>
             <button onClick={handleButtonClick}>Play again</button>
         </div>
     );

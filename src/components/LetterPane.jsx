@@ -21,16 +21,20 @@ export default function LetterPane(props){
         setChangeLetterState(!changeState);
     }
 
-    const changeGameStatus = () => {
-        game.resetGame();
+    const changeGameStatus = (value) => {
         alphabet.forEach(letter => letter.dis = false);
         setChangeLetterState(!changeState);
+        if (value === 'X'){
+            return;
+        }
+        game.resetGame();
+        setGameStatus();
     }
 
 
     return(
         <article>
-            <div className='rel'>
+            <div className='rel dataPane'>
                 <h2>Wähle einen Buchstaben</h2>
                 <section className="letterPane">
                     {alphabet.map(letter => <button key={letter.id} id={letter.id} onClick={handleClick} disabled={letter.dis} className="green">{letter.val}</button>)}
