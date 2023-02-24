@@ -13,16 +13,28 @@ function GameOverPane(props) {
         state(clickedButton);
     }
 
+    function showFailedAttempts(){
+        if(game.FailedAttempts === 0){
+            return `Du hattest k e i n e n Fehlversuch`;
+        }
+        else if(game.FailedAttempts > 1){
+            return `Du hattest ${game.FailedAttempts} Fehlversuche.`;
+        }
+        return `Du hattest ${game.FailedAttempts} Fehlversuch.`;
+    }
+
     return (
-        <div className="game-over-pane">
-            <button onClick={handleButtonClick}>X</button>
-            <h2>Game Over</h2>
-            <h3>{game.GameOverOutput}</h3>
-            <p>Du hast {game.FailedAttempts} Fehlversuche.</p>
-            <h3>{game.Word}</h3>
-            <p>war das gesuchte Wort.</p>
-            <button onClick={handleButtonClick}>Play again</button>
-        </div>
+        <article className="game-over-pane">
+                <button className="x" onClick={handleButtonClick}>X</button>
+            <section className="dataPane">
+                <h2>Game Over</h2>
+                <p className={game.FailedAttempts<6?"word":""}>{game.GameOverOutput}</p>
+                <p>{showFailedAttempts()}</p>
+                <p className="word">{game.Word}</p>
+                <p>war das gesuchte Wort.</p>
+            </section>
+            <button className="game-over-btn red" onClick={handleButtonClick}>NEUES SPIEL</button>
+        </article>
     );
 }
 

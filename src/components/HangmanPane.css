@@ -1,5 +1,6 @@
 .hangman{
     width: 300px;
+    height: 800px;
     margin: auto;
     background-color: #fff;
     border: 1px solid #000;
