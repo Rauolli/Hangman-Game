@@ -24,11 +24,13 @@ export default function HangmanPane( props){
 
     return (
         <article className="hangman" >
-            <section className="dataPane">
-                <svg viewBox="0 0 100 100">
-                    {svgGalgen.map((svgElement, index) => <g key={index}>{svgElement}</g>)}
-                    {showHangMan()?.map((svgElement, index) => <g key={index}>{svgElement}</g>)}
-                </svg>
+            <section>
+                <div className="dataPane">
+                    <svg viewBox="0 0 100 100">
+                        {svgGalgen.map((svgElement, index) => <g key={index}>{svgElement}</g>)}
+                        {showHangMan()?.map((svgElement, index) => <g key={index}>{svgElement}</g>)}
+                    </svg>
+                </div>               
             </section>
         </article>  
     );   
