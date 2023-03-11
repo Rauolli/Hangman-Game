@@ -29,6 +29,7 @@ function GameOverPane(props) {
             <section className="dataPane">
                 <h2>Game Over</h2>
                 <p className={game.FailedAttempts<6?"word":""}>{game.GameOverOutput}</p>
+                <br/>
                 <p>{showFailedAttempts()}</p>
                 <p className="word">{game.Word}</p>
                 <p>war das gesuchte Wort.</p>
